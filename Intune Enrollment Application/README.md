@@ -4,27 +4,18 @@ A custom PowerShell script created by Manny to enroll devices into Intune and re
 
 ## Requirements and Dependencies
 
-This uses the Microsoft Win32 Content Prep Tool (a.k.a. IntuneWinAppUtil.exe, available from https://github.com/Microsoft/Microsoft-Win32-Content-Prep-Tool) to package the PowerShell script and related files into a .intunewin file that can be uploaded to Intune as a Win32 app. 
-
-List any additional Requirements and Dependencies
-
-## Building
-
-Run the makeapp.cmd file from a command prompt.  (It will not work if you using Terminal.)
+This uses the [PSAppDeployToolkit](https://psappdeploytoolkit.com/) to package the PowerShell script and related files into a .msi file that can be used to cache the necessary script files and run. 
 
 ## Using
+You can use the provided pre-built MSI file (built with [PowerShell Studio 2022](https://www.sapien.com/store/powershell-studio)) or run the [CITIntuneDeploymentInfo.ps1](Files/CITIntuneDeploymentInfo.ps1) PowerShell script directly.
 
-Add the resulting Win32 app (.intunewin) to Intune.  The installation command line should be:
+### MSI Install
+Run the SilentIntuneDeployment.msi Microsoft Installer package.
 
-Deploy-Application.exe -DeploymentType Install -DeployMode Silent -AllowRebootPassThru
+### PowerShell script
+Run the [CITIntuneDeploymentInfo.ps1](Files/CITIntuneDeploymentInfo.ps1) PowerShell script in an elevated PowerShell window.
 
-The uninstall command line should be:
-
-Deploy-Application.exe -DeploymentType Uninstall -DeployMode Silent -AllowRebootPassThru
-
-Detection:
-<Detection type/rule goes here>
 
 ## Notes
 
-Any extra information goes here.
+* The MSI package is silent and will not display an installer workflow process. You will still see necessary Windows pop-up.
